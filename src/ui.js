@@ -25,7 +25,13 @@ export function initializeUI() {
     metricTotal: document.getElementById("metric-total"),
     metricHighPriority: document.getElementById("metric-high-priority"),
     metricAverageScore: document.getElementById("metric-average-score"),
-    opportunitiesList: document.getElementById("opportunities-list")
+    opportunitiesList: document.getElementById("opportunities-list"),
+    countQuickWin: document.getElementById("count-quick-win"),
+    countStrategic: document.getElementById("count-strategic"),
+    countOpportunistic: document.getElementById("count-opportunistic"),
+    countDeprioritize: document.getElementById("count-deprioritize"),
+    matrixCards: document.querySelectorAll(".matrix-card"),
+    chipFilters: document.querySelectorAll(".chip-filter")
   };
 
   // Event Listeners setup
@@ -34,8 +40,26 @@ export function initializeUI() {
   elements.filterArea.addEventListener("change", handleFiltersChange);
   elements.filterPriority.addEventListener("change", handleFiltersChange);
 
+  elements.matrixCards.forEach(card => {
+    card.addEventListener("click", () => handleMatrixCardClick(card.dataset.quadrant));
+  });
+
+  elements.chipFilters.forEach(chip => {
+    chip.addEventListener("click", () => handleQuadrantFilterSelect(chip.dataset.quadrantFilter));
+  });
+
   // Subscribe UI render to State changes
   state.subscribe(render);
+}
+
+function handleMatrixCardClick(selectedQuadrant) {
+  const current = state.filters.quadrant;
+  const next = current === selectedQuadrant ? "" : selectedQuadrant;
+  state.setFilters({ quadrant: next });
+}
+
+function handleQuadrantFilterSelect(selectedQuadrant) {
+  state.setFilters({ quadrant: selectedQuadrant });
 }
 
 function handleFormSubmit(e) {
@@ -119,6 +143,37 @@ function render(visibleOpportunities, metrics) {
   elements.metricHighPriority.textContent = metrics.highPriorityCount;
   elements.metricAverageScore.textContent = metrics.averageScore;
 
+  // Update AI Decision Matrix counts
+  if (metrics.quadrantCounts) {
+    if (elements.countQuickWin) elements.countQuickWin.textContent = metrics.quadrantCounts.quickWin;
+    if (elements.countStrategic) elements.countStrategic.textContent = metrics.quadrantCounts.strategic;
+    if (elements.countOpportunistic) elements.countOpportunistic.textContent = metrics.quadrantCounts.opportunistic;
+    if (elements.countDeprioritize) elements.countDeprioritize.textContent = metrics.quadrantCounts.deprioritize;
+  }
+
+  // Update Active Visual States (Matrix cards and Chip filters)
+  const activeQuadrant = metrics.activeQuadrantFilter || "";
+
+  if (elements.matrixCards) {
+    elements.matrixCards.forEach(card => {
+      if (card.dataset.quadrant === activeQuadrant) {
+        card.classList.add("active");
+      } else {
+        card.classList.remove("active");
+      }
+    });
+  }
+
+  if (elements.chipFilters) {
+    elements.chipFilters.forEach(chip => {
+      if (chip.dataset.quadrantFilter === activeQuadrant) {
+        chip.classList.add("active");
+      } else {
+        chip.classList.remove("active");
+      }
+    });
+  }
+
   // Render Opportunities list
   elements.opportunitiesList.innerHTML = "";
 
@@ -134,6 +189,7 @@ function render(visibleOpportunities, metrics) {
   visibleOpportunities.forEach(item => {
     const card = document.createElement("div");
     card.className = "opportunity-card";
+    const quadrantSlug = (item.quadrant || "").toLowerCase().replace(/\s+/g, "-");
 
     card.innerHTML = `
       <div class="card-header">
@@ -142,6 +198,9 @@ function render(visibleOpportunities, metrics) {
           <span class="badge badge-area">${escapeHTML(item.area)}</span>
           <span class="badge badge-priority-${item.priority.toLowerCase()}">
             ${item.priority}
+          </span>
+          <span class="badge badge-quadrant badge-quadrant-${quadrantSlug}">
+            ${item.quadrant}
           </span>
         </div>
       </div>

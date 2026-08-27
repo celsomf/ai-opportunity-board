@@ -1,13 +1,17 @@
-import { calculateOpportunityScore, getPriorityLevel } from "./calculator.js";
+import { calculateOpportunityScore, getPriorityLevel, getDecisionQuadrant } from "./calculator.js";
 import { saveOpportunities, loadOpportunities } from "./storage.js";
 import { validateOpportunity } from "./validation.js";
 
 class AppStateManager {
   constructor() {
-    this.opportunities = loadOpportunities();
+    this.opportunities = loadOpportunities().map(item => ({
+      ...item,
+      quadrant: getDecisionQuadrant(item.score, item.difficulty)
+    }));
     this.filters = {
       area: "",
-      priority: ""
+      priority: "",
+      quadrant: ""
     };
     this.listeners = [];
   }
@@ -37,6 +41,7 @@ class AppStateManager {
 
     const score = calculateOpportunityScore(data);
     const priority = getPriorityLevel(score);
+    const quadrant = getDecisionQuadrant(score, Number(data.difficulty));
 
     const newOpportunity = {
       id: crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).substring(2, 15),
@@ -51,6 +56,7 @@ class AppStateManager {
       difficulty: Number(data.difficulty),
       score,
       priority,
+      quadrant,
       createdAt: Date.now()
     };
 
@@ -73,6 +79,7 @@ class AppStateManager {
 
     const score = calculateOpportunityScore(data);
     const priority = getPriorityLevel(score);
+    const quadrant = getDecisionQuadrant(score, Number(data.difficulty));
 
     this.opportunities[index] = {
       ...this.opportunities[index],
@@ -86,7 +93,8 @@ class AppStateManager {
       dataReadiness: Number(data.dataReadiness),
       difficulty: Number(data.difficulty),
       score,
-      priority
+      priority,
+      quadrant
     };
 
     saveOpportunities(this.opportunities);
@@ -118,6 +126,9 @@ class AppStateManager {
     if (this.filters.priority) {
       result = result.filter(item => item.priority === this.filters.priority);
     }
+    if (this.filters.quadrant) {
+      result = result.filter(item => item.quadrant === this.filters.quadrant);
+    }
 
     // Ordenação: Maior score para menor. Tie-breaker: Data de criação mais recente primeiro
     result.sort((a, b) => {
@@ -142,10 +153,21 @@ class AppStateManager {
       averageScore = Math.round((sum / total) * 10) / 10;
     }
 
+    // Contagem macro global de todo o portfólio (visão panorâmica fixa)
+    const all = this.opportunities;
+    const quadrantCounts = {
+      quickWin: all.filter(item => item.quadrant === "QUICK WIN").length,
+      strategic: all.filter(item => item.quadrant === "STRATEGIC").length,
+      opportunistic: all.filter(item => item.quadrant === "OPPORTUNISTIC").length,
+      deprioritize: all.filter(item => item.quadrant === "DEPRIORITIZE").length
+    };
+
     return {
       total,
       highPriorityCount,
-      averageScore
+      averageScore,
+      quadrantCounts,
+      activeQuadrantFilter: this.filters.quadrant
     };
   }
 }

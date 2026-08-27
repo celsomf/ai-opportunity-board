@@ -21,7 +21,7 @@
 
 **Purpose**: Project readiness and test environment verification
 
-- [ ] T001 Verify project structure and test runner environment via `package.json`
+- [x] T001 Verify project structure and test runner environment via `package.json`
 
 ---
 
@@ -31,8 +31,8 @@
 
 **⚠️ CRITICAL**: Blocked until T002 and T003 are complete and passing tests
 
-- [ ] T002 Implement pure deterministic decision quadrant classification function `getDecisionQuadrant(score, difficulty)` in [src/calculator.js](file:///c:/Aula/projeto1/src/calculator.js)
-- [ ] T003 Add unit test suite for `getDecisionQuadrant` covering PRD reference cases (A, B, C, D) and exact boundary cases (80/2, 80/3, 79/2, 79/3) in [tests/app.test.js](file:///c:/Aula/projeto1/tests/app.test.js)
+- [x] T002 Implement pure deterministic decision quadrant classification function `getDecisionQuadrant(score, difficulty)` in [src/calculator.js](file:///c:/Aula/projeto1/src/calculator.js)
+- [x] T003 Add unit test suite for `getDecisionQuadrant` covering PRD reference cases (A, B, C, D) and exact boundary cases (80/2, 80/3, 79/2, 79/3) in [tests/app.test.js](file:///c:/Aula/projeto1/tests/app.test.js)
 
 **Checkpoint**: Foundation ready — deterministic calculator is tested and ready for state integration.
 
@@ -46,10 +46,10 @@
 
 ### Implementation for User Story 1
 
-- [ ] T004 [US1] Extend `addOpportunity`, `updateOpportunity`, and `loadOpportunities` to compute and attach `quadrant` to opportunity objects in [src/state.js](file:///c:/Aula/projeto1/src/state.js)
-- [ ] T005 [P] [US1] Add unit tests for opportunity state model quadrant calculation and persistence in [tests/app.test.js](file:///c:/Aula/projeto1/tests/app.test.js)
-- [ ] T006 [P] [US1] Add CSS styles for quadrant badges (`.badge-quadrant`, `.badge-quadrant-quick-win`, etc.) in [style.css](file:///c:/Aula/projeto1/style.css)
-- [ ] T007 [US1] Render legible quadrant badge on each opportunity card in [src/ui.js](file:///c:/Aula/projeto1/src/ui.js)
+- [x] T004 [US1] Extend `addOpportunity`, `updateOpportunity`, and `loadOpportunities` to compute and attach `quadrant` to opportunity objects in [src/state.js](file:///c:/Aula/projeto1/src/state.js)
+- [x] T005 [P] [US1] Add unit tests for opportunity state model quadrant calculation and persistence in [tests/app.test.js](file:///c:/Aula/projeto1/tests/app.test.js)
+- [x] T006 [P] [US1] Add CSS styles for quadrant badges (`.badge-quadrant`, `.badge-quadrant-quick-win`, etc.) in [style.css](file:///c:/Aula/projeto1/style.css)
+- [x] T007 [US1] Render legible quadrant badge on each opportunity card in [src/ui.js](file:///c:/Aula/projeto1/src/ui.js)
 
 **Checkpoint**: At this point, User Story 1 is fully functional and testable independently (MVP).
 
@@ -63,11 +63,11 @@
 
 ### Implementation for User Story 2
 
-- [ ] T008 [P] [US2] Add HTML structure for 2x2 AI Decision Matrix section and axis labels in [index.html](file:///c:/Aula/projeto1/index.html)
-- [ ] T009 [P] [US2] Add CSS Grid layout, 4 quadrant theme variables (Green, Blue, Amber, Red), and active hover/selection styles in [style.css](file:///c:/Aula/projeto1/style.css)
-- [ ] T010 [US2] Extend `getSummaryMetrics` in [src/state.js](file:///c:/Aula/projeto1/src/state.js) to calculate macro global portfolio counts for all 4 quadrants
-- [ ] T011 [US2] Bind click event listeners to 2x2 matrix quadrant cards with toggle filter behavior in [src/ui.js](file:///c:/Aula/projeto1/src/ui.js)
-- [ ] T012 [US2] Render global quadrant counts, active visual states, and empty states in [src/ui.js](file:///c:/Aula/projeto1/src/ui.js)
+- [x] T008 [P] [US2] Add HTML structure for 2x2 AI Decision Matrix section and axis labels in [index.html](file:///c:/Aula/projeto1/index.html)
+- [x] T009 [P] [US2] Add CSS Grid layout, 4 quadrant theme variables (Green, Blue, Amber, Red), and active hover/selection styles in [style.css](file:///c:/Aula/projeto1/style.css)
+- [x] T010 [US2] Extend `getSummaryMetrics` in [src/state.js](file:///c:/Aula/projeto1/src/state.js) to calculate macro global portfolio counts for all 4 quadrants
+- [x] T011 [US2] Bind click event listeners to 2x2 matrix quadrant cards with toggle filter behavior in [src/ui.js](file:///c:/Aula/projeto1/src/ui.js)
+- [x] T012 [US2] Render global quadrant counts, active visual states, and empty states in [src/ui.js](file:///c:/Aula/projeto1/src/ui.js)
 
 **Checkpoint**: User Stories 1 AND 2 are both functional and testable independently.
 
@@ -81,11 +81,11 @@
 
 ### Implementation for User Story 3
 
-- [ ] T013 [P] [US3] Add quadrant filter chip buttons in [index.html](file:///c:/Aula/projeto1/index.html)
-- [ ] T014 [P] [US3] Add CSS styling for quadrant filter chip buttons and active states in [style.css](file:///c:/Aula/projeto1/style.css)
-- [ ] T015 [US3] Extend `getVisibleOpportunities` in [src/state.js](file:///c:/Aula/projeto1/src/state.js) to support AND-combined filtering by `quadrant`
-- [ ] T016 [US3] Bind filter chip event listeners and render active filter chip states in [src/ui.js](file:///c:/Aula/projeto1/src/ui.js)
-- [ ] T017 [US3] Add unit tests for combined quadrant filtering in [tests/app.test.js](file:///c:/Aula/projeto1/tests/app.test.js)
+- [x] T013 [P] [US3] Add quadrant filter chip buttons in [index.html](file:///c:/Aula/projeto1/index.html)
+- [x] T014 [P] [US3] Add CSS styling for quadrant filter chip buttons and active states in [style.css](file:///c:/Aula/projeto1/style.css)
+- [x] T015 [US3] Extend `getVisibleOpportunities` in [src/state.js](file:///c:/Aula/projeto1/src/state.js) to support AND-combined filtering by `quadrant`
+- [x] T016 [US3] Bind filter chip event listeners and render active filter chip states in [src/ui.js](file:///c:/Aula/projeto1/src/ui.js)
+- [x] T017 [US3] Add unit tests for combined quadrant filtering in [tests/app.test.js](file:///c:/Aula/projeto1/tests/app.test.js)
 
 **Checkpoint**: All user stories are independently functional and integrated.
 
@@ -95,8 +95,8 @@
 
 **Purpose**: Validation and test suite verification
 
-- [ ] T018 Run automated Vitest test suite (`npm test`) to confirm 100% test pass rate in [tests/app.test.js](file:///c:/Aula/projeto1/tests/app.test.js)
-- [ ] T019 Perform manual frontend validation checklist per [quickstart.md](file:///c:/Aula/projeto1/specs/002-ai-desicision-matrix/quickstart.md)
+- [x] T018 Run automated Vitest test suite (`npm test`) to confirm 100% test pass rate in [tests/app.test.js](file:///c:/Aula/projeto1/tests/app.test.js)
+- [x] T019 Perform manual frontend validation checklist per [quickstart.md](file:///c:/Aula/projeto1/specs/002-ai-desicision-matrix/quickstart.md)
 
 ---
 

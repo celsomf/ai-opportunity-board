@@ -55,3 +55,18 @@ export function getPriorityLevel(score) {
     return 'BAIXA';
   }
 }
+
+/**
+ * Classifica a oportunidade em um quadrante estratégico (AI Decision Matrix).
+ * @param {number} score - Opportunity Score (0 a 100)
+ * @param {number} difficulty - Dificuldade de implementação (1 a 5)
+ * @returns {string} 'QUICK WIN' | 'STRATEGIC' | 'OPPORTUNISTIC' | 'DEPRIORITIZE'
+ */
+export function getDecisionQuadrant(score, difficulty) {
+  if (score >= 80) {
+    return difficulty <= 2 ? 'QUICK WIN' : 'STRATEGIC';
+  } else {
+    return difficulty <= 2 ? 'OPPORTUNISTIC' : 'DEPRIORITIZE';
+  }
+}
+
