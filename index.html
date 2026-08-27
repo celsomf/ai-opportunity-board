@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Opportunity Board</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header class="app-header">
+    <h1>AI Opportunity Board</h1>
+    <p>Compare e priorize seus processos para automação com Inteligência Artificial</p>
+  </header>
+
+  <main class="app-container">
+    <!-- Dashboard Summary Cards -->
+    <section class="dashboard-summary">
+      <div class="metric-card">
+        <h3>Total de Processos</h3>
+        <p id="metric-total">0</p>
+      </div>
+      <div class="metric-card">
+        <h3>Prioridade Alta</h3>
+        <p id="metric-high-priority">0</p>
+      </div>
+      <div class="metric-card">
+        <h3>Score Médio</h3>
+        <p id="metric-average-score">0</p>
+      </div>
+    </section>
+
+    <div class="main-content">
+      <!-- Form Section -->
+      <section class="form-section">
+        <h2 id="form-title">Cadastrar Oportunidade</h2>
+        <form id="opportunity-form">
+          <input type="hidden" id="field-id">
+
+          <div class="form-group">
+            <label for="field-name">Nome do Processo *</label>
+            <input type="text" id="field-name" maxlength="80" required placeholder="Ex: Roteamento de Chamados">
+          </div>
+
+          <div class="form-group">
+            <label for="field-area">Área *</label>
+            <select id="field-area" required>
+              <option value="">Selecione uma área</option>
+              <option value="Comercial">Comercial</option>
+              <option value="Marketing">Marketing</option>
+              <option value="Atendimento">Atendimento</option>
+              <option value="Financeiro">Financeiro</option>
+              <option value="RH">RH</option>
+              <option value="Operações">Operações</option>
+              <option value="TI">TI</option>
+              <option value="Outros">Outros</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="field-description">Descrição</label>
+            <textarea id="field-description" maxlength="300" placeholder="Breve descrição do processo (máx 300 caracteres)"></textarea>
+          </div>
+
+          <h3 class="section-subtitle">Critérios (Avalie de 1 a 5)</h3>
+
+          <div class="criteria-grid">
+            <div class="form-group">
+              <label for="field-impact">Impacto no Negócio</label>
+              <input type="number" id="field-impact" min="1" max="5" required value="3">
+            </div>
+
+            <div class="form-group">
+              <label for="field-frequency">Frequência</label>
+              <input type="number" id="field-frequency" min="1" max="5" required value="3">
+            </div>
+
+            <div class="form-group">
+              <label for="field-manual-effort">Esforço Manual</label>
+              <input type="number" id="field-manual-effort" min="1" max="5" required value="3">
+            </div>
+
+            <div class="form-group">
+              <label for="field-repetitivity">Repetitividade</label>
+              <input type="number" id="field-repetitivity" min="1" max="5" required value="3">
+            </div>
+
+            <div class="form-group">
+              <label for="field-data-readiness">Prontidão dos Dados</label>
+              <input type="number" id="field-data-readiness" min="1" max="5" required value="3">
+            </div>
+
+            <div class="form-group">
+              <label for="field-difficulty">Dificuldade de Implementação</label>
+              <input type="number" id="field-difficulty" min="1" max="5" required value="3">
+            </div>
+          </div>
+
+          <div id="form-errors" class="form-errors hidden"></div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary" id="btn-save">Salvar Oportunidade</button>
+            <button type="button" class="btn btn-secondary hidden" id="btn-cancel">Cancelar Edição</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- List Section -->
+      <section class="list-section">
+        <div class="list-header">
+          <h2>Processos Avaliados</h2>
+
+          <!-- Filters -->
+          <div class="filters-container">
+            <div class="filter-group">
+              <label for="filter-area">Área:</label>
+              <select id="filter-area">
+                <option value="">Todas</option>
+                <option value="Comercial">Comercial</option>
+                <option value="Marketing">Marketing</option>
+                <option value="Atendimento">Atendimento</option>
+                <option value="Financeiro">Financeiro</option>
+                <option value="RH">RH</option>
+                <option value="Operações">Operações</option>
+                <option value="TI">TI</option>
+                <option value="Outros">Outros</option>
+              </select>
+            </div>
+
+            <div class="filter-group">
+              <label for="filter-priority">Prioridade:</label>
+              <select id="filter-priority">
+                <option value="">Todas</option>
+                <option value="ALTA">Alta</option>
+                <option value="MÉDIA">Média</option>
+                <option value="BAIXA">Baixa</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div id="opportunities-list" class="opportunities-list">
+          <!-- Rendered dynamically -->
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script type="module" src="/main.js"></script>
+</body>
+</html>
