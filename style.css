@@ -83,6 +83,211 @@ body {
   color: #1e40af;
 }
 
+/* AI Decision Matrix 2x2 Section */
+.decision-matrix-section {
+  background: var(--card-bg);
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  margin-bottom: 2rem;
+}
+
+.matrix-header {
+  margin-bottom: 1.25rem;
+}
+
+.matrix-header h2 {
+  font-size: 1.25rem;
+  color: #1e293b;
+  margin-bottom: 0.25rem;
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.matrix-subtitle {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+.matrix-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.axis-vertical {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #475569;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.axis-horizontal {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #475569;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-align: right;
+}
+
+.matrix-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+@media (min-width: 600px) {
+  .matrix-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.matrix-card {
+  padding: 1.25rem;
+  border-radius: 8px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  position: relative;
+}
+
+.matrix-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.matrix-card.active {
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.4);
+  border-width: 3px;
+}
+
+.quadrant-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.quadrant-title {
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+}
+
+.quadrant-count {
+  font-size: 1.5rem;
+  font-weight: 800;
+  padding: 0.1rem 0.6rem;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.quadrant-desc {
+  font-size: 0.8rem;
+  line-height: 1.3;
+  opacity: 0.9;
+}
+
+/* Identidade Visual de Cada Quadrante */
+.quadrant-quick-win {
+  background-color: #ecfdf5;
+  color: #065f46;
+  border-color: #a7f3d0;
+}
+.quadrant-quick-win.active {
+  border-color: #10b981;
+}
+
+.quadrant-strategic {
+  background-color: #eff6ff;
+  color: #1e40af;
+  border-color: #bfdbfe;
+}
+.quadrant-strategic.active {
+  border-color: #3b82f6;
+}
+
+.quadrant-opportunistic {
+  background-color: #fffbeb;
+  color: #92400e;
+  border-color: #fde68a;
+}
+.quadrant-opportunistic.active {
+  border-color: #f59e0b;
+}
+
+.quadrant-deprioritize {
+  background-color: #fef2f2;
+  color: #991b1b;
+  border-color: #fecaca;
+}
+.quadrant-deprioritize.active {
+  border-color: #ef4444;
+}
+
+/* Chip Filter Bar */
+.matrix-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.filter-chip-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #475569;
+  margin-right: 0.25rem;
+}
+
+.chip-filter {
+  padding: 0.35rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  border: 1px solid var(--border-color);
+  background: white;
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.15s ease-in-out;
+}
+
+.chip-filter:hover {
+  background: #f1f5f9;
+}
+
+.chip-filter.active {
+  background: #1e293b;
+  color: white;
+  border-color: #1e293b;
+}
+
+.chip-quick-win.active {
+  background: #065f46;
+  border-color: #065f46;
+}
+
+.chip-strategic.active {
+  background: #1e40af;
+  border-color: #1e40af;
+}
+
+.chip-opportunistic.active {
+  background: #92400e;
+  border-color: #92400e;
+}
+
+.chip-deprioritize.active {
+  background: #991b1b;
+  border-color: #991b1b;
+}
+
 /* Layout */
 .main-content {
   display: grid;
@@ -339,6 +544,35 @@ h2 {
 .badge-priority-baixa {
   background-color: var(--priority-low);
   color: var(--priority-low-text);
+}
+
+/* AI Decision Matrix Badges */
+.badge-quadrant {
+  border: 1px solid transparent;
+}
+
+.badge-quadrant-quick-win {
+  background-color: #ecfdf5;
+  color: #065f46;
+  border-color: #a7f3d0;
+}
+
+.badge-quadrant-strategic {
+  background-color: #eff6ff;
+  color: #1e40af;
+  border-color: #bfdbfe;
+}
+
+.badge-quadrant-opportunistic {
+  background-color: #fffbeb;
+  color: #92400e;
+  border-color: #fde68a;
+}
+
+.badge-quadrant-deprioritize {
+  background-color: #fef2f2;
+  color: #991b1b;
+  border-color: #fecaca;
 }
 
 .card-desc {

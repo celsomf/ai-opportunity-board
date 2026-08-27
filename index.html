@@ -29,6 +29,61 @@
       </div>
     </section>
 
+    <!-- AI Decision Matrix Section -->
+    <section class="decision-matrix-section">
+      <div class="matrix-header">
+        <h2>AI Decision Matrix</h2>
+        <span class="matrix-subtitle">Priorização por Eixo de Opportunity Score (Vertical) e Dificuldade (Horizontal)</span>
+      </div>
+
+      <div class="matrix-container">
+        <div class="axis-vertical">Opportunity Score (Baixo → Alto)</div>
+        <div class="matrix-grid">
+          <div class="matrix-card quadrant-quick-win" data-quadrant="QUICK WIN" role="button" tabindex="0">
+            <div class="quadrant-header">
+              <span class="quadrant-title">QUICK WIN</span>
+              <span class="quadrant-count" id="count-quick-win">0</span>
+            </div>
+            <p class="quadrant-desc">Alto Ganho / Baixa Dificuldade (Score ≥ 80 / Dif ≤ 2)</p>
+          </div>
+
+          <div class="matrix-card quadrant-strategic" data-quadrant="STRATEGIC" role="button" tabindex="0">
+            <div class="quadrant-header">
+              <span class="quadrant-title">STRATEGIC</span>
+              <span class="quadrant-count" id="count-strategic">0</span>
+            </div>
+            <p class="quadrant-desc">Alto Ganho / Alta Dificuldade (Score ≥ 80 / Dif ≥ 3)</p>
+          </div>
+
+          <div class="matrix-card quadrant-opportunistic" data-quadrant="OPPORTUNISTIC" role="button" tabindex="0">
+            <div class="quadrant-header">
+              <span class="quadrant-title">OPPORTUNISTIC</span>
+              <span class="quadrant-count" id="count-opportunistic">0</span>
+            </div>
+            <p class="quadrant-desc">Menor Ganho / Baixa Dificuldade (Score &lt; 80 / Dif ≤ 2)</p>
+          </div>
+
+          <div class="matrix-card quadrant-deprioritize" data-quadrant="DEPRIORITIZE" role="button" tabindex="0">
+            <div class="quadrant-header">
+              <span class="quadrant-title">DEPRIORITIZE</span>
+              <span class="quadrant-count" id="count-deprioritize">0</span>
+            </div>
+            <p class="quadrant-desc">Menor Ganho / Alta Dificuldade (Score &lt; 80 / Dif ≥ 3)</p>
+          </div>
+        </div>
+        <div class="axis-horizontal">Dificuldade de Implementação (Baixa → Alta)</div>
+      </div>
+
+      <div class="matrix-filter-bar">
+        <span class="filter-chip-label">Filtrar por Quadrante:</span>
+        <button class="chip-filter active" data-quadrant-filter="">TODOS</button>
+        <button class="chip-filter chip-quick-win" data-quadrant-filter="QUICK WIN">QUICK WIN</button>
+        <button class="chip-filter chip-strategic" data-quadrant-filter="STRATEGIC">STRATEGIC</button>
+        <button class="chip-filter chip-opportunistic" data-quadrant-filter="OPPORTUNISTIC">OPPORTUNISTIC</button>
+        <button class="chip-filter chip-deprioritize" data-quadrant-filter="DEPRIORITIZE">DEPRIORITIZE</button>
+      </div>
+    </section>
+
     <div class="main-content">
       <!-- Form Section -->
       <section class="form-section">
